@@ -27,11 +27,11 @@ return $data;
 add_shortcode('cp-free-busy', 'show_busy_button');
 
 function button_color_script(){
-	wp_register_script('buttonColor', get_template_directory_uri(). 'foo.js');
+	wp_register_script('buttonColor', get_template_directory_uri(). 'foo.js' , array('jquery'));
 	wp_enqueue_script('buttonColor');
 
 }
 
-add_action('the_content', 'button_color_script');
+add_action('wp_enqueue_scripts', 'button_color_script');
 
 ?>
