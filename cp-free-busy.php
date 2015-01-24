@@ -3,9 +3,7 @@
 Plugin Name: cp-free-busy
 Version: 1.0.0
 Author: Vlad
-
 */
-
  
 function show_busy_button(){
  $data='<div class="btn-group ">
@@ -25,13 +23,21 @@ return $data;
  
 }
 add_shortcode('cp-free-busy', 'show_busy_button');
-
 function button_color_script(){
-	wp_register_script('buttonColor', get_template_directory_uri(). 'foo.js' , array('jquery'));
-	wp_enqueue_script('buttonColor');
-
+	$script = "
+		<script type='text/javascript'>
+			jQuery(document).ready(function($){
+				var buttonClass = $('button.btn').attr('class');
+				$('li a').on('click', function(){
+					var liClass = $(this).attr('class');
+				$('div.btn-group button').removeAttr('class');
+				$('div.btn-group button').addClass(buttonClass+' '+liClass);
+				})
+			});
+		</script>	
+		";
+	return $script;
+	
 }
-
 add_action('wp_enqueue_scripts', 'button_color_script');
-
 ?>
