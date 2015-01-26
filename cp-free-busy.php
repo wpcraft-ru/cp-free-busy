@@ -27,11 +27,11 @@ function button_color_script(){
 	$script = "
 		<script type='text/javascript'>
 			jQuery(document).ready(function($){
-				var buttonClass = $('button.btn').attr('class');
-				$('li a').on('click', function(){
-					var liClass = $(this).attr('class');
-				$('div.btn-group button').removeAttr('class');
-				$('div.btn-group button').addClass(buttonClass+' '+liClass);
+				var buttonClass = jQuery('button.btn').attr('class');
+				jQuery('li a').on('click', function(){
+					var liClass = jQuery(this).attr('class');
+				jQuery('div.btn-group button').removeAttr('class');
+				jQuery('div.btn-group button').addClass(buttonClass+' '+liClass);
 				})
 			});
 		</script>	
