@@ -40,4 +40,12 @@ function button_color_script(){
 	
 }
 add_action('wp_enqueue_scripts', 'button_color_script');
+
+function my_scripts_method() {
+    
+    wp_enqueue_script( 'jquery' );
+}    
+ 
+add_action( 'wp_enqueue_scripts', 'my_scripts_method' );
+
 ?>
