@@ -4,11 +4,10 @@ Plugin Name: cp-free-busy
 Version: 1.0.0
 Author: Vlad
 */
-    
  
-function btn_color_script(){
-	
-	$script = "
+ 
+function btn_color_script(){?>
+
 		<div class='btn-group '>
 		  <button class='btn btn-default btn-sm dropdown-toggle ' type='button' data-toggle='dropdown' >
 			Small button <span class='caret'></span>
@@ -37,11 +36,16 @@ function btn_color_script(){
 			
 			});
 		</script>	
-		";
-	return $script;
-	wp_enqueue_script( 'jquery' );
-}
-add_action('wp_enqueue_scripts', 'btn_color_script');
+		
+	
+<?php }
+
 add_shortcode('cp-free-busy', 'btn_color_script');
 
+function my_scripts_method() {
+    
+	wp_enqueue_script( 'jquery' );
+
+	}   
+add_action('wp_enqueue_scripts', 'my_scripts_method');  
 ?>
