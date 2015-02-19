@@ -22,7 +22,7 @@ function btn_color_script(){?>
     
 		  </button>
       			<ul class='dropdown-menu' role='menu' aria-expanded='false'>
-        			<li ><a class='btn btn-danger'>Red</a></li>
+        			<li ><a class='btn btn-danger btn-default'>Red</a></li>
         			<li ><a class='btn btn-warning'>Yellow</a></li>
         			<li ><a class='btn btn-success'>Green</a></li>
        
@@ -39,14 +39,14 @@ function btn_color_script(){?>
 				jQuery('div.btn-group button').addClass(buttonClass+' '+liClass);
 				});
 				
-				jQuery('.btn.btn-danger').on('click', function(){
-				var option = jQuery('li a.btn.btn-danger').text();	
+				jQuery('.btn.btn-danger.btn-default').on('click', function(){
+				var option = jQuery('li a.btn.btn-danger.btn-default').html();	
 				var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';	
 					var data = {action :'btn_ajax', 
 								status : option}
 					
 					$.post(ajaxurl, data, function(data) {
-						jQuery('div.btn-group button').html(data);
+						jQuery('div.btn-group button').text(data).append("<span class='caret'></span>");
 					});
 				});	
 				
@@ -57,7 +57,8 @@ function btn_color_script(){?>
 								status : option}
 					
 					$.post(ajaxurl, data, function(data) {
-						jQuery('div.btn-group button').html(data);
+						jQuery('div.btn-group button').html(data).append("<span class='caret'></span>");
+						
 					});
 				});
 				
@@ -68,7 +69,7 @@ function btn_color_script(){?>
 								status : option}
 					
 					$.post(ajaxurl, data, function(data) {
-						jQuery('div.btn-group button').html(data);
+						jQuery('div.btn-group button').html(data).append("<span class='caret'></span>");
 					});
 				});
 				
@@ -96,4 +97,3 @@ add_action('wp_ajax_nopriv_btn_ajax', 'btn_action_jscript');
 
 
 ?>
-
