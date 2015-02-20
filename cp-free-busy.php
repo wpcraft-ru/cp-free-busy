@@ -31,48 +31,65 @@ function btn_color_script(){?>
 		<script type='text/javascript'>
 			
 			jQuery(document).ready(function($){
-				
-				var buttonClass = jQuery('button.btn').attr('class');
-				$('li a').on('click', function(){
-					var liClass = jQuery(this).attr('class');
-				jQuery('div.btn-group button').removeAttr('class');
-				jQuery('div.btn-group button').addClass(buttonClass+' '+liClass);
-				});
-				
-				jQuery('.btn.btn-danger.btn-default').on('click', function(){
-				var option = jQuery('li a.btn.btn-danger.btn-default').html();	
-				var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';	
-					var data = {action :'btn_ajax', 
-								status : option}
-					
-					$.post(ajaxurl, data, function(data) {
-						jQuery('div.btn-group button').text(data).append("<span class='caret'></span>");
-					});
-				});	
-				
-				jQuery('.btn.btn-warning').on('click', function(){
-				var option = jQuery('li a.btn.btn-warning').text();	
-				var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';	
-					var data = {action :'btn_ajax', 
-								status : option}
-					
-					$.post(ajaxurl, data, function(data) {
-						jQuery('div.btn-group button').html(data).append("<span class='caret'></span>");
 						
-					});
-				});
-				
-				jQuery('.btn.btn-success').on('click', function(){
-				var option = jQuery('li a.btn.btn-success').text();	
-				var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';	
-					var data = {action :'btn_ajax', 
-								status : option}
 					
-					$.post(ajaxurl, data, function(data) {
-						jQuery('div.btn-group button').html(data).append("<span class='caret'></span>");
+					
+					var buttonClass = jQuery('button.btn').attr('class');
+					$('li a').on('click', function(){
+						var liClass = jQuery(this).attr('class');
+					
+						var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';
+							var data = {
+										action : 'btn_ajax',
+										status : liClass	
+							}
+							
+						$.post(ajaxurl, data, function(data) {
+							$('div.btn-group button').removeAttr('class');
+							$('div.btn-group button').addClass(buttonClass+' '+data);
+							});
 					});
-				});
-				
+					
+					
+					
+					
+					
+					
+					$('.btn.btn-danger.btn-default').on('click', function(){
+					var option = $('li a.btn.btn-danger.btn-default').html();	
+					var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';	
+						var data = {action :'btn_ajax', 
+									status : option}
+						
+						$.post(ajaxurl, data, function(data) {
+							jQuery('div.btn-group button').text(data).append("<span class='caret'></span>");
+						});
+					});	
+					
+					
+					jQuery('.btn.btn-warning').on('click', function(){
+					var option = jQuery('li a.btn.btn-warning').text();	
+					var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';	
+						var data = {action :'btn_ajax', 
+									status : option}
+						
+						$.post(ajaxurl, data, function(data) {
+							jQuery('div.btn-group button').html(data).append("<span class='caret'></span>");
+							
+						});
+					});
+					
+					jQuery('.btn.btn-success').on('click', function(){
+					var option = jQuery('li a.btn.btn-success').text();	
+					var ajaxurl = '<?php echo admin_url('admin-ajax.php');?>';	
+						var data = {action :'btn_ajax', 
+									status : option}
+						
+						$.post(ajaxurl, data, function(data) {
+							jQuery('div.btn-group button').html(data).append("<span class='caret'></span>");
+						});
+					});
+							
 			});
 			
 		</script>	
@@ -94,6 +111,5 @@ function btn_action_jscript(){
 
 add_action('wp_ajax_btn_ajax', 'btn_action_jscript');
 add_action('wp_ajax_nopriv_btn_ajax', 'btn_action_jscript');
-
 
 ?>
